@@ -1,0 +1,77 @@
+export default function SandraRefeicoes() {
+                  >
+                    <div className="text-xl font-bold">R$ 15</div>
+                    <div className="text-sm text-gray-600">Prato Completo</div>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-medium mb-2">
+                  Forma de Pagamento
+                </label>
+
+                <select className="w-full border rounded-xl p-3">
+                  <option>PIX</option>
+                  <option>Cartão de Crédito</option>
+                  <option>Cartão de Débito</option>
+                </select>
+              </div>
+
+              <div className="bg-orange-100 rounded-2xl p-4">
+                <div className="flex justify-between mb-2">
+                  <span>Taxa de entrega</span>
+                  <span>R$ 2,00</span>
+                </div>
+                <div className="flex justify-between font-bold text-lg">
+                  <span>Total</span>
+                  <span>R$ 17,00</span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-2xl text-lg shadow-lg"
+              >
+                Finalizar Pedido
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section className="bg-white rounded-3xl shadow-lg p-6 mb-10">
+          <h2 className="text-2xl font-semibold text-green-600 mb-4">
+            Pedido pelo WhatsApp
+          </h2>
+
+          <p className="text-gray-600 mb-4">
+            Faça seu pedido rapidamente pelo WhatsApp.
+          </p>
+
+          <a
+            href="https://wa.me/5581985427194"
+            target="_blank"
+            className="block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl text-lg"
+          >
+            Pedir no WhatsApp
+          </a>
+        </section>
+
+        <section className="bg-white rounded-3xl shadow-lg p-6 mb-10">
+          <h2 className="text-2xl font-semibold text-orange-600 mb-4">
+            Pagamento via PIX
+          </h2>
+
+          <div className="bg-orange-100 rounded-2xl p-4 text-center">
+            <p className="font-semibold mb-2">Chave PIX</p>
+            <p className="text-lg font-bold">81985427194</p>
+          </div>
+        </section>
+
+        <footer className="text-center text-gray-500 mt-10">
+          <p>© 2026 Sandra Refeições • Produção diária com qualidade.</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
