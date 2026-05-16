@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sandra Refeições</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -109,7 +108,7 @@ onchange="mostrarEndereco(); calcularTotal();"
 class="w-full border-2 border-orange-200 rounded-2xl p-4"
 >
 
-<option value="Entrega">
+<option value="Entrega" selected>
 Entrega
 </option>
 
@@ -121,9 +120,13 @@ Retirada
 
 <!-- ENDEREÇO -->
 
-<div id="boxEndereco">
+<div
+id="boxEndereco"
+class="w-full block"
+style="display:block;"
+>
 
-<label class="block font-bold text-gray-700 mb-2">
+<label class="block font-bold text-gray-700 mb-2 mt-2">
 Endereço
 </label>
 
@@ -178,7 +181,7 @@ Talher: Não
 
 </select>
 
-<!-- OBS -->
+<!-- OBSERVAÇÃO -->
 
 <textarea
 id="observacao"
