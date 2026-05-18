@@ -51,12 +51,12 @@ onchange="calcularTotal()"
 class="w-full border-2 border-orange-200 rounded-2xl p-4"
 >
 
-<option value="12">
-Almoço R$ 12
-</option>
-
 <option value="15">
 Almoço R$ 15
+</option>
+
+<option value="18">
+Almoço R$ 18
 </option>
 
 </select>
@@ -89,6 +89,7 @@ type="text"
 id="nome"
 placeholder="Nome do cliente"
 class="w-full border-2 border-orange-200 rounded-2xl p-4"
+required
 />
 
 <!-- TELEFONE -->
@@ -98,6 +99,7 @@ type="tel"
 id="telefone"
 placeholder="Telefone"
 class="w-full border-2 border-orange-200 rounded-2xl p-4"
+required
 />
 
 <!-- ENTREGA -->
@@ -123,7 +125,6 @@ Retirada
 <div
 id="boxEndereco"
 class="w-full block"
-style="display:block;"
 >
 
 <label class="block font-bold text-gray-700 mb-2 mt-2">
@@ -221,7 +222,7 @@ Carne extra:
 Valor do almoço:
 R$
 <span id="valorAlmoco">
-12.00
+15.00
 </span>
 
 </p>
@@ -231,7 +232,7 @@ R$
 Total:
 R$
 <span id="total">
-14.00
+17.00
 </span>
 
 </p>
@@ -274,12 +275,12 @@ Imprimir Pedido
 
 const carnes = [
 
-"Cupim Acebolado",
-"Galinha Guisada",
 "Frango na Chapa",
+"Galinha Guisada",
+"Bife ao Molho",
 "Filé de Peixe",
-"Bisteca",
-"Linguicinha com Fritas"
+"Fígado Acebolado",
+"Bisteca com Barbecue"
 
 ];
 
@@ -329,7 +330,7 @@ document.createElement("button");
 botao.innerText = item;
 
 botao.className =
-"border-2 border-orange-200 rounded-2xl p-4 font-semibold hover:bg-orange-100";
+"border-2 border-orange-200 rounded-2xl p-4 font-semibold hover:bg-orange-100 transition";
 
 botao.onclick = () => {
 
@@ -375,7 +376,7 @@ document.createElement("button");
 botao.innerText = item;
 
 botao.className =
-"border-2 border-orange-200 rounded-2xl p-4 font-semibold hover:bg-orange-100";
+"border-2 border-orange-200 rounded-2xl p-4 font-semibold hover:bg-orange-100 transition";
 
 botao.onclick = () => {
 
@@ -500,13 +501,13 @@ total.toFixed(2);
 function enviarPedido(){
 
 const nome =
-document.getElementById("nome").value;
+document.getElementById("nome").value.trim();
 
 const telefone =
-document.getElementById("telefone").value;
+document.getElementById("telefone").value.trim();
 
 const endereco =
-document.getElementById("endereco").value;
+document.getElementById("endereco").value.trim();
 
 const entrega =
 document.getElementById("tipoEntrega").value;
@@ -518,7 +519,7 @@ const talher =
 document.getElementById("garfo").value;
 
 const observacao =
-document.getElementById("observacao").value;
+document.getElementById("observacao").value.trim();
 
 const valorAlmoco =
 document.getElementById("tipoAlmoco").value;
@@ -542,7 +543,7 @@ entrega === "Entrega"
 ){
 
 alert(
-"Digite o endereço"
+"Digite o endereço completo"
 );
 
 return;
@@ -559,10 +560,10 @@ mensagem +=
 `📞 Telefone: ${telefone}\n`;
 
 mensagem +=
-`🍽️ Almoço R$ ${valorAlmoco}\n`;
+`🍽️ Almoço: R$ ${valorAlmoco}\n`;
 
 mensagem +=
-`🚚 ${entrega}\n`;
+`🚚 Tipo: ${entrega}\n`;
 
 if(entrega === "Entrega"){
 
@@ -581,51 +582,56 @@ mensagem +=
 `🍴 Talher: ${talher}\n`;
 
 mensagem +=
-`💰 Total: R$ ${total}\n`;
-
-mensagem +=
 `\n🍖 CARNES:\n`;
+
+if(carnesSelecionadas.length === 0){
+
+mensagem += "- Nenhuma selecionada\n";
+
+}else{
 
 carnesSelecionadas.forEach(item=>{
 
-mensagem +=
-`- ${item}\n`;
+mensagem += `- ${item}\n`;
 
 });
-
-mensagem +=
-`\n🍛 ACOMPANHAMENTOS:\n`;
-
-acompanhamentosSelecionados.forEach(item=>{
-
-mensagem +=
-`- ${item}\n`;
-
-});
-
-if(observacao !== ""){
-
-mensagem +=
-`\n📝 OBSERVAÇÃO:\n`;
-
-mensagem +=
-`${observacao}\n`;
 
 }
 
 mensagem +=
-`\n💰 Total: R$ ${total}`;
+`\n🍛 ACOMPANHAMENTOS:\n`;
+
+if(acompanhamentosSelecionados.length === 0){
+
+mensagem += "- Nenhum selecionado\n";
+
+}else{
+
+acompanhamentosSelecionados.forEach(item=>{
+
+mensagem += `- ${item}\n`;
+
+});
+
+}
+
+if(observacao !== ""){
+
+mensagem +=
+`\n📝 OBSERVAÇÃO:\n${observacao}\n`;
+
+}
+
+mensagem +=
+`\n💰 TOTAL: R$ ${total}`;
 
 const numero =
 "5581985427194";
 
-window.open(
+const url =
+`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
-`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
-
-"_blank"
-
-);
+window.open(url, "_blank");
 
 }
 
